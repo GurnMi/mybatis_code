@@ -11,8 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MyBatisSqlSessionFactory {
 	private static SqlSessionFactory sqlSessionFactory;
 
-	public static SqlSessionFactory getSqlsessionfactory() {
-		if (sqlSessionFactory==null) {
+	public static void getSqlsessionfactory() {
+//		if (sqlSessionFactory==null) {
 			try (InputStream is = Resources.getResourceAsStream("mybatis-config.xml");){
 				sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 			} catch (IOException e) {
@@ -21,11 +21,15 @@ public class MyBatisSqlSessionFactory {
 				throw new RuntimeException(e.getCause());
 			}
 		}
-			
-		return sqlSessionFactory;
-	}
+/*			
+		return sqlSessionFactory;*/
+		
+	
 	
 	public static SqlSession openSession() {
+		if(sqlSessionFactory ==null) {
+			getSqlsessionfactory();
+		}
 		return sqlSessionFactory.openSession();
 	}
 	

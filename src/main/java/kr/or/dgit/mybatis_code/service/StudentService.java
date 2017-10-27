@@ -11,14 +11,14 @@ import kr.or.dgit.mybatis_code.util.MyBatisSqlSessionFactory;
 public class StudentService {
 	
 	public List<Student> selectAllStudent(){
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.getSqlsessionfactory().openSession();){
+		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
 			StudentDao dao = sqlSession.getMapper(StudentDao.class);
 			return dao.findAllStudents();	
 		}
 	}
 	
 	public int createStudent(Student student) {
-		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession()){
+		try(SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
 			StudentDao dao = sqlSession.getMapper(StudentDao.class);
 			int res = dao.insertStudent(student);
 			sqlSession.commit();

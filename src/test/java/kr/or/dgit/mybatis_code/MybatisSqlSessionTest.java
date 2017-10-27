@@ -15,24 +15,24 @@ import kr.or.dgit.mybatis_code.dto.Student;
 import kr.or.dgit.mybatis_code.util.MyBatisSqlSessionFactory;
 
 public class MybatisSqlSessionTest {
-	private static SqlSessionFactory factory;
+	private static SqlSession sqlSession;
 	
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.out.println("setUpBeforeClass()");
-		factory = MyBatisSqlSessionFactory.getSqlsessionfactory();
+		sqlSession = MyBatisSqlSessionFactory.openSession();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		System.out.println("tearDownAfterClass()");
-		factory = null;
+		sqlSession = null;
 	}
 
 	@Test
 	public void testSqlSessionFactory() {
-		Assert.assertNotNull(factory);
+		Assert.assertNotNull(sqlSession);
 	}
 	
 /*	@Test

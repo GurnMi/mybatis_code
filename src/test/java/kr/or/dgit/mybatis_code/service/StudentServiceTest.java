@@ -50,13 +50,13 @@ public class StudentServiceTest {
 	
 	@Test
 	public void test3SelectStudentByNo() {		
-		Student selStd = studentService.SelectStudentByNo(3);
+		Student selStd = studentService.SelectStudentByNo(1);
 		Assert.assertEquals(1, selStd.getStudId());
 	}
 	
 	@Test
 	public void test4deleteStudent() {		
-		studentService.deleteStudent(11);
+		studentService.deleteStudent(3);
 	}
 	
 }
